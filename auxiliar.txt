@@ -1,0 +1,17 @@
+
+opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
